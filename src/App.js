@@ -9,33 +9,27 @@ import {
   Grid,
   theme,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
+import Home from './components/Home';
+import Pricing from './components/Pricing';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Store from './components/Store';
+import Cartpage from './components/Cartpage';
+import SignPage from './components/SignPage';
 function App() {
   return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
+    <React.Fragment>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="/store" element={<Store />} />
+          <Route path="/cart" element={<Cartpage />} />
+          <Route path="/sign-in" element={<SignPage />} />
+        </Routes>
+      </BrowserRouter>
+    </React.Fragment>
   );
 }
 
